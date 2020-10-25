@@ -1,0 +1,65 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Agna\\source\\repos\\CSharp\\Atsiskaitymas\\Atsiskaitymas\\Atsiskaitymas.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Agna\\source\\repos\\CSharp\\Atsiskaitymas\\Atsiskaitymas\\Atsiskaitymas.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Agna\\source\\repos\\CSharp\\Atsiskaitymas\\Atsiskaitymas\\Atsiskaitymas.csproj",
+        "projectName": "Atsiskaitymas",
+        "projectPath": "C:\\Users\\Agna\\source\\repos\\CSharp\\Atsiskaitymas\\Atsiskaitymas\\Atsiskaitymas.csproj",
+        "packagesPath": "C:\\Users\\Agna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Agna\\source\\repos\\CSharp\\Atsiskaitymas\\Atsiskaitymas\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\Agna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "FluentWPF": {
+              "target": "Package",
+              "version": "[0.8.0, )"
+            },
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
