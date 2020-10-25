@@ -16,17 +16,21 @@ using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 
 namespace Atsiskaitymas
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 
-    
-//-----!!!!!  
-//    1. isvalyti search - po enter/ar search button -- isvalyti filmo parodyma
-//    2. try catch poster img
+    // Csharp Atsiskaitymas - Agna Semaškaitė
+
+    // Programa, skirta filmų paieškai. 
+    // Naudojantis OMDB API pagalba, yra duodama užklausa į šio API serverį ir 
+    // gaunamas rezultatas atitinkantis paieškos raktažodžius.
+    // 
+
+    //-----!!!!!  
+    //    1. isvalyti search - po enter/ar search button 
+    //    2. saraso duplikatai
+
     public partial class MainWindow : Window
     {
-        public string _json { get; set;}
+        public string _json { get; set; }
+        public List<string> _titles {get; set;}
 
         public MainWindow()
         {
@@ -116,6 +120,24 @@ namespace Atsiskaitymas
 
         private void ieskoti_btn_Click(object sender, RoutedEventArgs e)
         {
+            labels_block1.Visibility = Visibility.Hidden;
+            labels_block2.Visibility = Visibility.Hidden;
+            labels_block3.Visibility = Visibility.Hidden;
+
+            title.Content = null;
+            year.Content = null;
+            runtime.Content = null;
+            genre.Content = null;
+            director.Content = null;
+            writer.Text = null;
+            actors.Text = null;
+            plot.Text = null;
+            released.Content = null;
+            language.Content = null;
+            country.Content = null;
+            imdbRating.Content = null;
+            poster.Source = null;
+
             string ivestis;
             ivestis = paieska.Text;
             parseJSON(KviestiPirmaAPI(ivestis));
@@ -126,6 +148,24 @@ namespace Atsiskaitymas
         {
             if (e.Key == Key.Enter)
             {
+                labels_block1.Visibility = Visibility.Hidden;
+                labels_block2.Visibility = Visibility.Hidden;
+                labels_block3.Visibility = Visibility.Hidden;
+
+                title.Content = null;
+                year.Content = null;
+                runtime.Content = null;
+                genre.Content = null;
+                director.Content = null;
+                writer.Text = null;
+                actors.Text = null;
+                plot.Text = null;
+                released.Content = null;
+                language.Content = null;
+                country.Content = null;
+                imdbRating.Content = null;
+                poster.Source = null;
+
                 string ivestis;
                 ivestis = paieska.Text;
                 parseJSON(KviestiPirmaAPI(ivestis));
@@ -165,7 +205,21 @@ namespace Atsiskaitymas
 
         private void atvaizduotiPaieskosRezultatusListBoxe(string json)
         {
-            paieskosListBox.Items.Clear();
+            try
+            {
+                if (_titles.Count != 0)
+                {
+                    foreach (string title in _titles)
+                    {
+                        paieskosListBox.Items.Remove(title);
+                    }
+                }
+            }
+            catch { }
+            finally
+            {
+                _titles = new List<string>();
+            }
 
             var jsonObjektas = JsonConvert.DeserializeObject<PaieskosRezultatas>(json);
             var titles = jsonObjektas.Search.Select(pavadinimas => pavadinimas.Title).ToList();
@@ -173,31 +227,60 @@ namespace Atsiskaitymas
             foreach (string title in titles)
             {
                 paieskosListBox.Items.Add(title);
+             
             }
+
+            _titles = titles;
         }
 
         private void paieskosListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          
+            title.Content = null;
+            year.Content = null;
+            runtime.Content = null;
+            genre.Content = null;
+            director.Content = null;
+            writer.Text = null;
+            actors.Text = null;
+            plot.Text = null;
+            released.Content = null;
+            language.Content = null;
+            country.Content = null;
+            imdbRating.Content = null;
+            poster.Source = null;
+
             var jsonObjektas = JsonConvert.DeserializeObject<PaieskosRezultatas>(_json);
             var titles = jsonObjektas.Search.Select(pavadinimas => pavadinimas.Title).ToList();
             var ids = jsonObjektas.Search.Select(id => id.imdbID).ToList();
-            var types = jsonObjektas.Search.Select(type => type.Type).ToList();
+            var titlesTemp = titles;
 
             Dictionary<string, string> dict = new Dictionary<string, string>();
-           
-            for (int i = 0; i < titles.Count; i++)
-            {
-                dict.Add(titles[i], ids[i]);
-            }
 
+            try
+            {
+                foreach (string title1 in titles)
+                {
+                    foreach (string title2 in titlesTemp)
+                    {
+                        if (title1 != title2)
+                        {
+                            for (int i = 0; i < titles.Count; i++)
+                            {
+                                dict.Add(titles[i], ids[i]);
+                            }
+                        }
+                    }
+                }
+            }
+            catch 
+            {
+
+            }
 
             var pasirinkimas = paieskosListBox.SelectedItem.ToString();
             var gautiID  = dict[pasirinkimas].ToString();
 
             atvaizduotiFilma(KviestiAntraAPI(gautiID));
-
-         //   paieskosListBox.UnselectAll();
         }
 
         private void atvaizduotiFilma(string json)
@@ -205,6 +288,7 @@ namespace Atsiskaitymas
             labels_block1.Visibility = Visibility.Visible;
             labels_block2.Visibility = Visibility.Visible;
             labels_block3.Visibility = Visibility.Visible;
+
             var jsonObjektas = JsonConvert.DeserializeObject<PasirinktasRezultatas>(json);
             title.Content = jsonObjektas.Title;
             year.Content = jsonObjektas.Year;
@@ -237,15 +321,24 @@ namespace Atsiskaitymas
 
         private void sukurtiPosterUrlIrAtvaizduoti(string poster_path)
         {
+
             var url = "";
             BitmapImage img = new BitmapImage();
             img.BeginInit();
             url = $"{poster_path}";
-            img.UriSource = new Uri(url, UriKind.RelativeOrAbsolute);
-            img.CacheOption = BitmapCacheOption.OnLoad;
-            img.EndInit();
 
-            poster.Source = img;
+            try
+            {
+                if (url.Length != 0)
+                {
+                    img.UriSource = new Uri(url, UriKind.RelativeOrAbsolute);
+                    img.CacheOption = BitmapCacheOption.OnLoad;
+                    img.EndInit();
+
+                    poster.Source = img;
+                }
+            }
+            catch { }
         }
     }
 }

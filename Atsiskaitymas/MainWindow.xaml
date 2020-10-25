@@ -25,7 +25,7 @@
                 </ListViewItem>
             </StackPanel>
             <Button Content="Search" HorizontalAlignment="Right" Margin="0,100,25,0" Width="75" Click="ieskoti_btn_Click" RenderTransformOrigin="0.517,0.041" VerticalAlignment="Top"/>
-            <ListBox Name="paieskosListBox" HorizontalAlignment="Left" Height="440" VerticalAlignment="Top" Width="230" Margin="10,150,0,0" SelectionChanged="paieskosListBox_SelectionChanged"/>
+            <ListBox Name="paieskosListBox" HorizontalAlignment="Left" Height="440" VerticalAlignment="Top" Width="230" Margin="10,150,0,0" SelectionChanged="paieskosListBox_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
         </Grid>
 
         <Grid HorizontalAlignment="Right" Width="830" Height="600" VerticalAlignment="Bottom" Grid.Column="1" Opacity="0.65">
@@ -35,11 +35,11 @@
                 </StackPanel>
             </Grid>
             <Grid Margin="0,41,235,0">
-                <Label x:Name="title" Content="" Width="560" Margin="31,0,-1,504" FontSize="25" FontFamily="Lato Black" FontWeight="Bold" HorizontalContentAlignment="Right" Height="50" VerticalContentAlignment="Center" Background="{x:Null}" Foreground="#D8FFFFFF"/>
+                <Label x:Name="title" Content="" Width="560" Margin="31,0,-1,504" FontSize="25" FontFamily="Lato Black" FontWeight="Bold" HorizontalContentAlignment="Right" Height="50" VerticalContentAlignment="Center" Background="{x:Null}" Foreground="#D8FFFFFF" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                 <Label x:Name="year" Content="" Width="89" Margin="0,53,0.4,451" FontFamily="Lato" FontWeight="Bold" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" HorizontalAlignment="Right" Background="{x:Null}" Foreground="#D8FFFFFF" Height="55"/>
                 <Label x:Name="imdbRating" Content="" Width="89" Margin="0,108,0.4,0" FontFamily="Lato" FontWeight="Bold" FontSize="30" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="55" Background="{x:Null}" Foreground="#D8FFFFFF" VerticalAlignment="Top"/>
-                <Label x:Name="runtime" Content="" Margin="396,58,94,476" FontFamily="Corbel Light" FontSize="18" HorizontalContentAlignment="Right" Background="{x:Null}" Foreground="#D8FFFFFF" Height="26"/>
-                <Label x:Name="genre" Content="" Margin="10,88,94,446" FontFamily="Corbel Light" FontSize="18" HorizontalContentAlignment="Right" Background="{x:Null}" Foreground="#D8FFFFFF" Height="30"/>
+                <Label x:Name="runtime" Content="" Margin="396,58,94,476" FontFamily="Corbel Light" FontSize="18" HorizontalContentAlignment="Right" Background="{x:Null}" Foreground="#D8FFFFFF" Height="30"/>
+                <Label x:Name="genre" Content="" Margin="10,93,94.4,438" FontFamily="Corbel Light" FontSize="18" HorizontalContentAlignment="Right" Background="{x:Null}" Foreground="#D8FFFFFF" Height="30"/>
                 <StackPanel x:Name="labels_block1" Margin="0,121,0,296" HorizontalAlignment="Left" Width="138" Visibility="Hidden">
                     <Label x:Name="director_label" Content="Director:" FontSize="16" FontFamily="Corbel Light" Margin="0" FontWeight="Bold" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Background="{x:Null}" Foreground="#D8FFFFFF" Height="30" VerticalAlignment="Top"/>
                     <Label x:Name="writer_label" Content="Writer:" FontSize="16" FontFamily="Corbel Light"  Margin="0" FontWeight="Bold" HorizontalContentAlignment="Right" Background="{x:Null}" Foreground="#D8FFFFFF" Padding="4,4,4,14" Height="45" VerticalAlignment="Top"/>
