@@ -24,8 +24,7 @@ namespace Atsiskaitymas
     // 
 
     //-----!!!!!  
-    //    1. isvalyti search - po enter/ar search button 
-    //    2. saraso duplikatai
+    //    1. saraso duplikatai
 
     public partial class MainWindow : Window
     {
@@ -211,7 +210,7 @@ namespace Atsiskaitymas
                 {
                     foreach (string title in _titles)
                     {
-                        paieskosListBox.Items.Remove(title);
+                        paieskosListBox.Items.Clear();
                     }
                 }
             }
@@ -272,10 +271,7 @@ namespace Atsiskaitymas
                     }
                 }
             }
-            catch 
-            {
-
-            }
+            catch { }
 
             var pasirinkimas = paieskosListBox.SelectedItem.ToString();
             var gautiID  = dict[pasirinkimas].ToString();
