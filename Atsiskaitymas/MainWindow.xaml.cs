@@ -21,10 +21,6 @@ namespace Atsiskaitymas
     // Programa, skirta filmų paieškai. 
     // Naudojantis OMDB API pagalba, yra duodama užklausa į šio API serverį ir 
     // gaunamas rezultatas atitinkantis paieškos raktažodžius.
-    // 
-
-    //-----!!!!!  
-    //    1. saraso duplikatai
 
     public partial class MainWindow : Window
     {
@@ -183,7 +179,6 @@ namespace Atsiskaitymas
             var jsonObjektas = JsonConvert.DeserializeObject<PaieskosRezultatas>(json);
             var totalResult = jsonObjektas.totalResults;
 
-            // tikrina kiek rezultatu grazina paieskos uzklausa
             if (Convert.ToInt32(totalResult) >= 2)
             {
                 atvaizduotiPaieskosRezultatusListBoxe(json);
