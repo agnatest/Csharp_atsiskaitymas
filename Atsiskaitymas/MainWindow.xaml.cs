@@ -66,11 +66,11 @@ namespace Atsiskaitymas
             }
             catch (WebException e)
             {
-                title.Content = e.ToString();
+                title.Text = e.ToString();
             }
             catch (Exception e)
             {
-                title.Content = e.ToString();
+                title.Text = e.ToString();
             }
 
             _json = result;
@@ -107,11 +107,11 @@ namespace Atsiskaitymas
             }
             catch (WebException e)
             {
-                title.Content = e.ToString();
+                title.Text = e.ToString();
             }
             catch (Exception e)
             {
-                title.Content = e.ToString();
+                title.Text = e.ToString();
             }
 
             return result;
@@ -123,7 +123,7 @@ namespace Atsiskaitymas
             labels_block2.Visibility = Visibility.Hidden;
             labels_block3.Visibility = Visibility.Hidden;
 
-            title.Content = null;
+            title.Text = null;
             year.Content = null;
             runtime.Content = null;
             genre.Content = null;
@@ -151,7 +151,7 @@ namespace Atsiskaitymas
                 labels_block2.Visibility = Visibility.Hidden;
                 labels_block3.Visibility = Visibility.Hidden;
 
-                title.Content = null;
+                title.Text = null;
                 year.Content = null;
                 runtime.Content = null;
                 genre.Content = null;
@@ -198,7 +198,7 @@ namespace Atsiskaitymas
             }
             else
             {
-                title.Content = "KLAIDA! Nerasta jokių filmų.";
+                title.Text = "KLAIDA! Nerasta jokių filmų.";
             }
         }
 
@@ -234,7 +234,7 @@ namespace Atsiskaitymas
 
         private void paieskosListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            title.Content = null;
+            title.Text = null;
             year.Content = null;
             runtime.Content = null;
             genre.Content = null;
@@ -286,7 +286,7 @@ namespace Atsiskaitymas
             labels_block3.Visibility = Visibility.Visible;
 
             var jsonObjektas = JsonConvert.DeserializeObject<PasirinktasRezultatas>(json);
-            title.Content = jsonObjektas.Title;
+            title.Text = jsonObjektas.Title;
             year.Content = jsonObjektas.Year;
             runtime.Content = jsonObjektas.Runtime;
             genre.Content = jsonObjektas.Genre;
